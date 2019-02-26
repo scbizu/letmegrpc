@@ -6,11 +6,12 @@ package serve
 import (
 	context "context"
 	fmt "fmt"
+	math "math"
+
 	proto "github.com/gogo/protobuf/proto"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
-	math "math"
 )
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -49,11 +50,7 @@ func (x Instrument) String() string {
 }
 
 func (Instrument) EnumDescriptor() ([]byte, []int) {
-<<<<<<< HEAD
-	return fileDescriptor_7edf7f5b739891d6, []int{0}
-=======
 	return fileDescriptor_serve_bce9681e1a14af0a, []int{0}
->>>>>>> testcmd: update testcmd test case
 }
 
 type Genre int32
@@ -93,11 +90,7 @@ func (x Genre) String() string {
 }
 
 func (Genre) EnumDescriptor() ([]byte, []int) {
-<<<<<<< HEAD
-	return fileDescriptor_7edf7f5b739891d6, []int{1}
-=======
 	return fileDescriptor_serve_bce9681e1a14af0a, []int{1}
->>>>>>> testcmd: update testcmd test case
 }
 
 type Artist struct {
@@ -113,11 +106,7 @@ func (m *Artist) Reset()         { *m = Artist{} }
 func (m *Artist) String() string { return proto.CompactTextString(m) }
 func (*Artist) ProtoMessage()    {}
 func (*Artist) Descriptor() ([]byte, []int) {
-<<<<<<< HEAD
-	return fileDescriptor_7edf7f5b739891d6, []int{0}
-=======
 	return fileDescriptor_serve_bce9681e1a14af0a, []int{0}
->>>>>>> testcmd: update testcmd test case
 }
 func (m *Artist) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_Artist.Unmarshal(m, b)
@@ -166,11 +155,7 @@ func (m *Song) Reset()         { *m = Song{} }
 func (m *Song) String() string { return proto.CompactTextString(m) }
 func (*Song) ProtoMessage()    {}
 func (*Song) Descriptor() ([]byte, []int) {
-<<<<<<< HEAD
-	return fileDescriptor_7edf7f5b739891d6, []int{1}
-=======
 	return fileDescriptor_serve_bce9681e1a14af0a, []int{1}
->>>>>>> testcmd: update testcmd test case
 }
 func (m *Song) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_Song.Unmarshal(m, b)
@@ -225,20 +210,13 @@ type Album struct {
 	Genre Genre   `protobuf:"varint,3,opt,name=Genre,proto3,enum=serve.Genre" json:"Genre,omitempty"`
 	//2015
 	Year string `protobuf:"bytes,4,opt,name=Year,proto3" json:"Year,omitempty"`
-<<<<<<< HEAD
-	//Uhm ja
-=======
 	// Uhm ja
->>>>>>> testcmd: update testcmd test case
 	Producer             []string `protobuf:"bytes,5,rep,name=Producer,proto3" json:"Producer,omitempty"`
 	Mediocre             bool     `protobuf:"varint,6,opt,name=Mediocre,proto3" json:"Mediocre,omitempty"`
 	Rated                bool     `protobuf:"varint,7,opt,name=Rated,proto3" json:"Rated,omitempty"`
 	Epilogue             string   `protobuf:"bytes,8,opt,name=Epilogue,proto3" json:"Epilogue,omitempty"`
 	Likes                []bool   `protobuf:"varint,9,rep,packed,name=Likes,proto3" json:"Likes,omitempty"`
-<<<<<<< HEAD
-=======
 	Count                int64    `protobuf:"varint,10,opt,name=Count,proto3" json:"Count,omitempty"`
->>>>>>> testcmd: update testcmd test case
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
@@ -248,11 +226,7 @@ func (m *Album) Reset()         { *m = Album{} }
 func (m *Album) String() string { return proto.CompactTextString(m) }
 func (*Album) ProtoMessage()    {}
 func (*Album) Descriptor() ([]byte, []int) {
-<<<<<<< HEAD
-	return fileDescriptor_7edf7f5b739891d6, []int{2}
-=======
 	return fileDescriptor_serve_bce9681e1a14af0a, []int{2}
->>>>>>> testcmd: update testcmd test case
 }
 func (m *Album) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_Album.Unmarshal(m, b)
@@ -353,11 +327,7 @@ func (m *EndLess) Reset()         { *m = EndLess{} }
 func (m *EndLess) String() string { return proto.CompactTextString(m) }
 func (*EndLess) ProtoMessage()    {}
 func (*EndLess) Descriptor() ([]byte, []int) {
-<<<<<<< HEAD
-	return fileDescriptor_7edf7f5b739891d6, []int{3}
-=======
 	return fileDescriptor_serve_bce9681e1a14af0a, []int{3}
->>>>>>> testcmd: update testcmd test case
 }
 func (m *EndLess) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_EndLess.Unmarshal(m, b)
@@ -599,8 +569,6 @@ var _Label_serviceDesc = grpc.ServiceDesc{
 	Streams:  []grpc.StreamDesc{},
 	Metadata: "serve.proto",
 }
-<<<<<<< HEAD
-=======
 
 func init() { proto.RegisterFile("serve.proto", fileDescriptor_serve_bce9681e1a14af0a) }
 
@@ -638,4 +606,3 @@ var fileDescriptor_serve_bce9681e1a14af0a = []byte{
 	0xea, 0xc4, 0x26, 0x6d, 0xb4, 0x9d, 0xe8, 0xf4, 0x8c, 0xb7, 0x7d, 0xf7, 0x17, 0x7d, 0xfa, 0x1b,
 	0x00, 0x00, 0xff, 0xff, 0xfe, 0x74, 0x92, 0xb1, 0x54, 0x03, 0x00, 0x00,
 }
->>>>>>> testcmd: update testcmd test case
