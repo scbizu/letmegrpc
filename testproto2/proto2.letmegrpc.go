@@ -7,6 +7,7 @@ import net_http "net/http"
 import encoding_json "encoding/json"
 import io "io"
 import golang_org_x_net_context "golang.org/x/net/context"
+import strconv "strconv"
 import log "log"
 import google_golang_org_grpc "google.golang.org/grpc"
 import proto "github.com/gogo/protobuf/proto"
@@ -472,7 +473,7 @@ s += '<label class="heading">Song</label>'
 s += '</div></div>'
 s += '<div class="field form-group"><label class="col-sm-2 control-label">Name: </label><div class="col-sm-10"><input class="form-control" name="Name" type="text" '+setStrValue("Type in a Name", json["Name"])+'/></div></div>';
 				
-s += '<div class="field form-group"><label class="col-sm-2 control-label">Track: </label><div class="col-sm-10"><input class="form-control" name="Track" type="number" step="1" '+setValue(1, json["Track"])+'/></div></div>';
+s += '<div class="field form-group"><label class="col-sm-2 control-label">Track: </label><div class="col-sm-10"><input class="form-control" name="Track" type="text" '+setStrValue("1", json["Track"])+'/></div></div>';
 				
 s += '<div class="field form-group"><label class="col-sm-2 control-label">Duration: </label><div class="col-sm-10"><input class="form-control" name="Duration" type="number" step="any" '+setValue(3.3, json["Duration"])+'/></div></div>';
 				
@@ -559,7 +560,7 @@ s += '<div class="field form-group"><label class="col-sm-2 control-label">Epilog
 				s += '<a href="#" fieldname="Likes" class="add-elem btn btn-info btn-sm" role="button" type="bool">add Likes</a>';
 				s += '<div class="field form-group"></div>';
 				
-s += '<div class="field form-group"><label class="col-sm-2 control-label">Stars: </label><div class="col-sm-10"><input class="form-control" name="Stars" type="number" step="1" '+setValue("", json["Stars"])+'/></div></div>';
+s += '<div class="field form-group"><label class="col-sm-2 control-label">Stars: </label><div class="col-sm-10"><input class="form-control" name="Stars" type="text" '+setStrValue(undefined, json["Stars"])+'/></div></div>';
 				
 s += '<div class="fields" fieldname="Serial">';
 				var Serial = getList(json, "Serial");
@@ -652,6 +653,34 @@ func (this *htmlProto2) Produce(w net_http.ResponseWriter, req *net_http.Request
 	jsonString := req.FormValue("json")
 	someValue := false
 	msg := &Album{}
+	validateMap := make(map[string]interface{})
+	err := encoding_json.Unmarshal([]byte(jsonString), &validateMap)
+	if err != nil {
+		log.Printf("[Parse Request]: %s ", err.Error())
+	}
+	if err == nil {
+		for k, v := range validateMap {
+			switch v.(type) {
+			case string:
+				vInt, err := strconv.ParseInt(v.(string), 10, 64)
+				if err != nil {
+					continue
+				}
+				validateMap[k] = vInt
+			case float64:
+				vInt := int(v.(float64))
+				if vInt > math.MaxInt32 {
+					vStr := strconv.Itoa(vInt)
+					validateMap[k] = vStr
+				}
+			}
+		}
+		jsonBytes, err := encoding_json.Marshal(validateMap)
+		if err != nil {
+			log.Printf("re-marshal failed: %s ", err.Error())
+		}
+		jsonString = string(jsonBytes)
+	}
 	if len(jsonString) > 0 {
 		err := encoding_json.Unmarshal([]byte(jsonString), msg)
 		if err != nil {

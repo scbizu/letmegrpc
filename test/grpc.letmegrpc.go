@@ -541,21 +541,29 @@ func (this *htmlMyTest) UnaryCall(w net_http.ResponseWriter, req *net_http.Reque
 	if err != nil {
 		log.Printf("validator: %s ", err.Error())
 	}
-	for k, v := range validateMap {
-		switch v.(type) {
-		case string:
-			vInt, err := strconv.ParseInt(v.(string), 10, 64)
-			if err != nil {
-				continue
+	if err == nil {
+		for k, v := range validateMap {
+			switch v.(type) {
+			case string:
+				vInt, err := strconv.ParseInt(v.(string), 10, 64)
+				if err != nil {
+					continue
+				}
+				validateMap[k] = vInt
+			case float64:
+				vInt := int(v.(float64))
+				if vInt > math.MaxInt32 {
+					vStr := strconv.Itoa(vInt)
+					validateMap[k] = vStr
+				}
 			}
-			validateMap[k] = vInt
 		}
+		jsonBytes, err := encoding_json.Marshal(validateMap)
+		if err != nil {
+			log.Printf("re-marshal failed: %s ", err.Error())
+		}
+		jsonString = string(jsonBytes)
 	}
-	jsonBytes, err := encoding_json.Marshal(validateMap)
-	if err != nil {
-		log.Printf("re-marshal failed: %s ", err.Error())
-	}
-	jsonString = string(jsonBytes)
 	if len(jsonString) > 0 {
 		err := encoding_json.Unmarshal([]byte(jsonString), msg)
 		if err != nil {
@@ -1069,21 +1077,29 @@ func (this *htmlMyTest) Downstream(w net_http.ResponseWriter, req *net_http.Requ
 	if err != nil {
 		log.Printf("validator: %s ", err.Error())
 	}
-	for k, v := range validateMap {
-		switch v.(type) {
-		case string:
-			vInt, err := strconv.ParseInt(v.(string), 10, 64)
-			if err != nil {
-				continue
+	if err == nil {
+		for k, v := range validateMap {
+			switch v.(type) {
+			case string:
+				vInt, err := strconv.ParseInt(v.(string), 10, 64)
+				if err != nil {
+					continue
+				}
+				validateMap[k] = vInt
+			case float64:
+				vInt := int(v.(float64))
+				if vInt > math.MaxInt32 {
+					vStr := strconv.Itoa(vInt)
+					validateMap[k] = vStr
+				}
 			}
-			validateMap[k] = vInt
 		}
+		jsonBytes, err := encoding_json.Marshal(validateMap)
+		if err != nil {
+			log.Printf("re-marshal failed: %s ", err.Error())
+		}
+		jsonString = string(jsonBytes)
 	}
-	jsonBytes, err := encoding_json.Marshal(validateMap)
-	if err != nil {
-		log.Printf("re-marshal failed: %s ", err.Error())
-	}
-	jsonString = string(jsonBytes)
 	if len(jsonString) > 0 {
 		err := encoding_json.Unmarshal([]byte(jsonString), msg)
 		if err != nil {
@@ -1606,21 +1622,29 @@ func (this *htmlMyTest) Upstreamy(w net_http.ResponseWriter, req *net_http.Reque
 	if err != nil {
 		log.Printf("validator: %s ", err.Error())
 	}
-	for k, v := range validateMap {
-		switch v.(type) {
-		case string:
-			vInt, err := strconv.ParseInt(v.(string), 10, 64)
-			if err != nil {
-				continue
+	if err == nil {
+		for k, v := range validateMap {
+			switch v.(type) {
+			case string:
+				vInt, err := strconv.ParseInt(v.(string), 10, 64)
+				if err != nil {
+					continue
+				}
+				validateMap[k] = vInt
+			case float64:
+				vInt := int(v.(float64))
+				if vInt > math.MaxInt32 {
+					vStr := strconv.Itoa(vInt)
+					validateMap[k] = vStr
+				}
 			}
-			validateMap[k] = vInt
 		}
+		jsonBytes, err := encoding_json.Marshal(validateMap)
+		if err != nil {
+			log.Printf("re-marshal failed: %s ", err.Error())
+		}
+		jsonString = string(jsonBytes)
 	}
-	jsonBytes, err := encoding_json.Marshal(validateMap)
-	if err != nil {
-		log.Printf("re-marshal failed: %s ", err.Error())
-	}
-	jsonString = string(jsonBytes)
 	if len(jsonString) > 0 {
 		err := encoding_json.Unmarshal([]byte(jsonString), msg)
 		if err != nil {
@@ -2148,21 +2172,29 @@ func (this *htmlMyTest) Bidi(w net_http.ResponseWriter, req *net_http.Request) {
 	if err != nil {
 		log.Printf("validator: %s ", err.Error())
 	}
-	for k, v := range validateMap {
-		switch v.(type) {
-		case string:
-			vInt, err := strconv.ParseInt(v.(string), 10, 64)
-			if err != nil {
-				continue
+	if err == nil {
+		for k, v := range validateMap {
+			switch v.(type) {
+			case string:
+				vInt, err := strconv.ParseInt(v.(string), 10, 64)
+				if err != nil {
+					continue
+				}
+				validateMap[k] = vInt
+			case float64:
+				vInt := int(v.(float64))
+				if vInt > math.MaxInt32 {
+					vStr := strconv.Itoa(vInt)
+					validateMap[k] = vStr
+				}
 			}
-			validateMap[k] = vInt
 		}
+		jsonBytes, err := encoding_json.Marshal(validateMap)
+		if err != nil {
+			log.Printf("re-marshal failed: %s ", err.Error())
+		}
+		jsonString = string(jsonBytes)
 	}
-	jsonBytes, err := encoding_json.Marshal(validateMap)
-	if err != nil {
-		log.Printf("re-marshal failed: %s ", err.Error())
-	}
-	jsonString = string(jsonBytes)
 	if len(jsonString) > 0 {
 		err := encoding_json.Unmarshal([]byte(jsonString), msg)
 		if err != nil {
